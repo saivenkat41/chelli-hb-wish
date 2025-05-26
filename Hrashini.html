@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Harshini!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            transform-style: preserve-3d;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #4b6584;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        .birthday-girl {
+            font-weight: 600;
+            color: #ff6b6b;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 2rem auto;
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-frame:hover img {
+            transform: scale(1.1);
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+            padding: 0 1rem;
+            color: #4b6584;
+        }
+        
+        .wishes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .wish-card {
+            background: linear-gradient(135deg, #f8a5c2 0%, #f5cd79 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            width: 250px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            transform-style: preserve-3d;
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .wish-card h3 {
+            font-family: 'Dancing Script', cursive;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .wish-card p {
+            color: #4b4b4b;
+            font-size: 0.9rem;
+        }
+        
+        .cake {
+            font-size: 3rem;
+            margin: 1rem 0;
+            animation: bounce 2s infinite;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: confettiFall 5s linear infinite;
+            z-index: 1;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #surprise {
+            margin-top: 2rem;
+        }
+        
+        #surpriseContent {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s ease;
+        }
+        
+        #surprise.show #surpriseContent {
+            max-height: 1000px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .music-control i {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .wishes {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .wish-card {
+                width: 80%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday!</h1>
+        <h2>Dear <span class="birthday-girl">Chelli</span></h2>
+        
+        <div class="photo-frame">
+            <!-- Replace with actual image path -->
+            <img src="./harshini.jpg" alt="Harshini's Photo" id="birthdayPhoto">
+        </div>
+        
+        <div class="message">
+            <p>On this special day, I wish you endless happiness, boundless joy, and all the success in the world. May your birthday be as wonderful and amazing as you are!</p>
+        </div>
+        
+        <div class="cake">🎂</div>
+        
+        <div class="wishes">
+            <div class="wish-card" onclick="this.classList.toggle('flipped')">
+                <h3>Health</h3>
+                <p>May you always be blessed with good health and vitality to enjoy life to the fullest.</p>
+            </div>
+            <div class="wish-card" onclick="this.classList.toggle('flipped')">
+                <h3>Happiness</h3>
+                <p>May your life be filled with laughter, joy, and countless moments of happiness.</p>
+            </div>
+            <div class="wish-card" onclick="this.classList.toggle('flipped')">
+                <h3>Success</h3>
+                <p>May all your dreams come true and may you achieve great success in everything you do.</p>
+            </div>
+        </div>
+        
+        <button class="btn" id="surpriseBtn">Click for a Surprise!</button>
+        
+        <div id="surprise" class="hidden">
+            <div id="surpriseContent">
+                <h2 style="color: #ff6b6b; margin-top: 1rem;">Special Message Just For You!</h2>
+                <div class="message">
+                    <p>Harshini, you're an incredible person with a heart of gold. Your kindness, intelligence, and beautiful spirit make the world a better place. Today, we celebrate you and all the wonderful things that make you unique!</p>
+                    <p>May this year bring you closer to your dreams and fill your life with love and adventure. You deserve all the best things life has to offer!</p>
+                </div>
+                
+                
+                
+                <div class="cake" style="font-size: 4rem;">🎉🥳🎊</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-music"></i>
+    </div>
+    
+    <audio id="birthdayMusic" loop>
+        <source src="./harshini audio.mp3" type="audio/mpeg">
+        <!-- Replace with actual birthday music -->
+    </audio>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create confetti
+            function createConfetti() {
+                const colors = ['#ff6b6b', '#ffb8b8', '#ffd166', '#06d6a0', '#118ab2', '#073b4c'];
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    document.body.appendChild(confetti);
+                }
+            }
+            
+            // Surprise button
+            const surpriseBtn = document.getElementById('surpriseBtn');
+            const surprise = document.getElementById('surprise');
+            
+            surpriseBtn.addEventListener('click', function() {
+                surprise.classList.toggle('hidden');
+                if (!surprise.classList.contains('hidden')) {
+                    surprise.classList.add('show');
+                    createConfetti();
+                    // Change photo to a more festive one
+                    document.getElementById('birthdayPhoto').src = "./harshini.jpg";
+                }
+            });
+            
+            // Music control
+            const musicControl = document.getElementById('musicControl');
+            const birthdayMusic = document.getElementById('birthdayMusic');
+            let musicPlaying = false;
+            
+            musicControl.addEventListener('click', function() {
+                if (musicPlaying) {
+                    birthdayMusic.pause();
+                    musicControl.innerHTML = '<i class="fas fa-music"></i>';
+                } else {
+                    birthdayMusic.play();
+                    musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+                musicPlaying = !musicPlaying;
+            });
+            
+            // Animate wish cards on load
+            const wishCards = document.querySelectorAll('.wish-card');
+            wishCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+            
+            // Change cursor to party emoji when over cake
+            const cakes = document.querySelectorAll('.cake');
+            cakes.forEach(cake => {
+                cake.addEventListener('mouseover', () => {
+                    document.body.style.cursor = "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><text x=\"0\" y=\"20\" font-size=\"20\">🎉</text></svg>'), auto";
+                });
+                cake.addEventListener('mouseout', () => {
+                    document.body.style.cursor = 'default';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
